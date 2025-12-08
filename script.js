@@ -207,6 +207,7 @@ const DAYS = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche']
           staffArray.forEach(s => createStaffInput(s.name));
           ensureTrailingEmptyStaffInput();
           updateStaffModelAndUI();
+          saveStateToLocalStorage();
           showNotification("Liste du staff importée avec succès !");
         } catch (err) {
           console.error(err);
@@ -684,6 +685,7 @@ const DAYS = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche']
           ensureTrailingEmptyDaySlot(dayIndex);
           updateDaySlotCount(dayIndex);
           updateStats();
+          saveStateToLocalStorage();
           showNotification(`Créneaux pour ${DAYS[dayIndex]} importés.`);
         } catch (err) {
           console.error(err);
@@ -752,6 +754,7 @@ const DAYS = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche']
           });
 
           updateStats();
+          saveStateToLocalStorage();
           showNotification("Créneaux de la semaine importés.");
         } catch (err) {
           console.error(err);
@@ -818,6 +821,7 @@ const DAYS = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche']
           needsByDay[dayIndex] = arr;
 
           buildNeedsUI();
+          saveStateToLocalStorage();
           showNotification(`Besoins horaires pour ${DAYS[dayIndex]} importés.`);
         } catch (err) {
           console.error(err);
@@ -898,6 +902,7 @@ const DAYS = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche']
           });
 
           buildNeedsUI();
+          saveStateToLocalStorage();
           showNotification("Besoins de la semaine importés.");
         } catch (err) {
           console.error(err);
