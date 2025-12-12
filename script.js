@@ -16,6 +16,8 @@ const DAYS = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche']
     let needsResolutionMinutes = 30; // 30 ou 60
     let needsByDay = []; // [dayIndex][segmentIndex] = int
 
+    let isInitializing = true;
+
     // ---------- NOTIFICATION ----------
     function showNotification(message, type = 'success') {
       const container = document.getElementById('notification-container');
@@ -1576,6 +1578,7 @@ const DAYS = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche']
 
     // ---------- LOCALSTORAGE PERSISTENCE ----------
     function saveStateToLocalStorage() {
+      if (isInitializing) return;
       const staff = collectStaffFromDOM();
       const slotsByDay = getSlotsByDay();
       const assignments = snapshotAssignments();
@@ -1670,6 +1673,7 @@ const DAYS = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche']
       initDaySlotsUI();
       initNeedsUI();
       loadStateFromLocalStorage();
+      isInitializing = false;
     });
 
     function clearAllData() {
